@@ -1,19 +1,27 @@
-// Import the Express library we just installed, so we can use its features
+// Load environment variables from .env into process.env
+require("dotenv").config();
+
+// Import the Express library
 const express = require("express");
 
-// Create an "app" — this represents our whole web server
+// Import our new database connection function
+const connectDB = require("./config/db");
+
+// Create our server
 const app = express();
 
-// Choose a port number — this is like a "door" on your phone that the server listens on
-const PORT = 3000;
+// Use the PORT from .env, or fall back to 3000 if it's missing
+const PORT = process.env.PORT || 3000;
 
-// Define what happens when someone visits the homepage ("/") of our server
-// req = the incoming request, res = the response we send back
+// Actually connect to MongoDB before we do anything else
+connectDB();
+
+// Our homepage route, same as before
 app.get("/", (req, res) => {
   res.send("Hello! My Event Management System server is running.");
 });
 
-// Start the server and make it listen for visitors on our chosen port
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
