@@ -4,19 +4,30 @@ require("dotenv").config();
 // Import the Express library
 const express = require("express");
 
-// Import our new database connection function
+// Import our database connection function
 const connectDB = require("./config/db");
+
+// Import our auth routes
+const authRoutes = require("./routes/authRoutes");
 
 // Create our server
 const app = express();
 
-// Use the PORT from .env, or fall back to 3000 if it's missing
+// Use the PORT from .env, or fall back to 3000 if missing
 const PORT = process.env.PORT || 3000;
 
-// Actually connect to MongoDB before we do anything else
+// Connect to MongoDB
 connectDB();
 
-// Our homepage route, same as before
+// This is essential middleware: it tells Express to automatically read
+// incoming JSON data from requests and make it available as req.body
+app.use(express.json());
+
+// Mount our auth routes under the "/api/auth" path
+// So "/register" inside authRoutes becomes "/api/auth/register" here
+app.use("/api/auth", authRoutes);
+
+// Our homepage route, unchanged
 app.get("/", (req, res) => {
   res.send("Hello! My Event Management System server is running.");
 });
