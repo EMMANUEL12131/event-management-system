@@ -3,19 +3,21 @@ const express = require("express");
 const router = express.Router();
 
 // Import our event controller functions
-const { createEvent, getEvents } = require("../controllers/eventController");
+const { createEvent, getEvents, registerForEvent } = require("../controllers/eventController");
 
-// Import our "protect" middleware, to guard routes that need login
+// Import our "protect" middleware
 const { protect } = require("../middleware/authMiddleware");
 
-// GET /api/events → fetch all events (public — anyone can browse, no login needed)
+// GET /api/events → fetch all events (public)
 router.get("/", getEvents);
 
-// POST /api/events → create a new event (protected — only logged-in users)
-// Notice "protect" is listed BEFORE "createEvent" — Express runs middleware
-// in order, so protect checks the token first, and only calls createEvent
-// if that check passes
+// POST /api/events → create a new event (protected)
 router.post("/", protect, createEvent);
+
+// POST /api/events/:id/register → register for a specific event (protected)
+// ":id" is a "route parameter" — a placeholder that matches any event ID
+// e.g. POST /api/events/6abd6c9b7dab202972c54bac/register
+router.post("/:id/register", protect, registerForEvent);
 
 // Make this router available to server.js
 module.exports = router;
