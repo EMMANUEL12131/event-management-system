@@ -7,8 +7,9 @@ const express = require("express");
 // Import our database connection function
 const connectDB = require("./config/db");
 
-// Import our auth routes
+// Import our route files
 const authRoutes = require("./routes/authRoutes");
+const eventRoutes = require("./routes/eventRoutes");
 
 // Create our server
 const app = express();
@@ -19,15 +20,14 @@ const PORT = process.env.PORT || 3000;
 // Connect to MongoDB
 connectDB();
 
-// This is essential middleware: it tells Express to automatically read
-// incoming JSON data from requests and make it available as req.body
+// Middleware to parse incoming JSON
 app.use(express.json());
 
-// Mount our auth routes under the "/api/auth" path
-// So "/register" inside authRoutes becomes "/api/auth/register" here
+// Mount our routes
 app.use("/api/auth", authRoutes);
+app.use("/api/events", eventRoutes);
 
-// Our homepage route, unchanged
+// Our homepage route
 app.get("/", (req, res) => {
   res.send("Hello! My Event Management System server is running.");
 });
