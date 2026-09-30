@@ -2,6 +2,8 @@
 const Event = require("../models/Event");
 // Import our Registration model, to record who signed up for what
 const Registration = require("../models/Registration");
+// Import our email-sending function
+const sendConfirmationEmail = require("../config/email");
 // This function handles creating a new event
 // It assumes our "protect" middleware already ran, so req.user is available
 const createEvent = async (req, res) => {
@@ -75,6 +77,10 @@ const registerForEvent = async (req, res) => {
     // If we reach here, registration succeeded — increase the event's count
     event.registeredCount += 1;
     await event.save();
+
+    // Send a confirmation email to the user who just registered
+    // req.user.email comes from our auth middleware (the logged-in user)
+    await sendConfirmationEmail(req.user.email, event.title, event.date.toDateString());
 
     // Send back confirmation
     res.status(201).json({
