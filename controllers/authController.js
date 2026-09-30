@@ -60,6 +60,51 @@ const registerUser = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+// This function handles logging in an existing user
+const loginUser = async (req, res) => {
+  try {
+    // Pull email and password from the incoming request
+    const { email, password } = req.body;
+
+    // Look for a user with this email in the database
+    const user = await User.findOne({ email });
+
+    // If no user was found with that email, stop and send an error
+    if (!user) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+    // Compare the typed password against the stored hashed password
+    // bcrypt.compare handles the scrambling internally — we never un-hash anything
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    // If it doesn't match, send the same generic error
+    // (we deliberately don't say "wrong password" specifically — that would
+    // tell an attacker the email exists, which is a small security leak)
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+    // If we reach here, the password is correct — generate a fresh token
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "30d" }
+    );
+
+    // Send back the user's info and their new token
+    res.status(200).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token,
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
 
 // Make this function available to other files (our routes file, next)
-module.exports = { registerUser };
+module.exports = { registerUser, loginUser };
