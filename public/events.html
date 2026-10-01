@@ -18,7 +18,14 @@
   </header>
 
   <main>
-    <!-- This empty div is where we'll insert event cards using JavaScript -->
+    <!-- A text box for searching by title, and a dropdown for filtering by category -->
+    <input type="text" id="searchInput" placeholder="Search events by title...">
+    <select id="categoryFilter">
+      <option value="">All Categories</option>
+      <!-- We'll fill this dropdown with real categories using JavaScript,
+           since we don't know in advance what categories exist -->
+    </select>
+
     <div id="eventsList"></div>
   </main>
 <script src="nav.js"></script>
