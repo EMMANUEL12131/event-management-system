@@ -1,4 +1,5 @@
-// Grab the form and message elements
+(function () {
+  // Grab the form and message elements
 const loginForm = document.getElementById("loginForm");
 const messageEl = document.getElementById("message");
 
@@ -43,4 +44,4 @@ loginForm.addEventListener("submit", async (event) => {
     messageEl.textContent = "Something went wrong. Please try again.";
     messageEl.style.color = "red";
   }
-});
+});})();

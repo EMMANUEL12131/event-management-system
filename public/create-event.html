@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Event - Event Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/events.html">Events</a>
+    <a href="/login.html">Login</a>
+    <a href="/register.html">Register</a>
+  </nav>
+
+  <header>
+    <h1>Create a New Event</h1>
+  </header>
+
+  <main>
+    <form id="createEventForm">
+      <input type="text" id="title" placeholder="Event Title" required>
+      <textarea id="description" placeholder="Description" rows="4" required></textarea>
+      <input type="text" id="category" placeholder="Category (e.g. Technology, Music)" required>
+      <input type="date" id="date" required>
+      <input type="time" id="time" required>
+      <input type="text" id="location" placeholder="Location" required>
+      <input type="number" id="capacity" placeholder="Maximum Capacity" required>
+      <button type="submit">Create Event</button>
+    </form>
+
+    <p id="message"></p>
+  </main>
+
+  <script src="nav.js"></script>
+  <script src="create-event.js"></script>
+</body>
+</html>

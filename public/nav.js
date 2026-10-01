@@ -1,4 +1,5 @@
-// Check if a token exists in browser storage — this tells us if someone's logged in
+(function () {
+  // Check if a token exists in browser storage — this tells us if someone's logged in
 const token = localStorage.getItem("token");
 const userName = localStorage.getItem("userName");
 
@@ -11,6 +12,7 @@ if (token) {
   navEl.innerHTML = `
     <a href="/index.html">Home</a>
     <a href="/events.html">Events</a>
+    <a href="/create-event.html">Create Event</a>
     <span>Welcome, ${userName}</span>
     <a href="#" id="logoutLink">Logout</a>
   `;
@@ -30,3 +32,4 @@ if (token) {
 }
 // If there's no token, we do nothing — the original Login/Register links
 // we already wrote in the HTML stay exactly as they are
+  })();

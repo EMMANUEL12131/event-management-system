@@ -1,4 +1,5 @@
-// Grab the form element by its id, so we can "listen" for when it's submitted
+(function () {
+  // Grab the form element by its id, so we can "listen" for when it's submitted
 const registerForm = document.getElementById("registerForm");
 
 // Grab the message paragraph, so we can show feedback to the user
@@ -58,4 +59,4 @@ registerForm.addEventListener("submit", async (event) => {
     messageEl.textContent = "Something went wrong. Please try again.";
     messageEl.style.color = "red";
   }
-});
+});})();

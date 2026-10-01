@@ -1,4 +1,5 @@
-// Grab the container div where we'll display all events
+(function () {
+  // Grab the container div where we'll display all events
 const eventsListEl = document.getElementById("eventsList");
 
 // Get the logged-in user's token from browser storage (saved during login/register)
@@ -99,4 +100,4 @@ const handleRegisterClick = async (event) => {
 // we add ONE listener to the whole container. This is called "event delegation" —
 // clicks on any button inside eventsListEl will "bubble up" and get caught here,
 // even for buttons that didn't exist yet when the page first loaded
-eventsListEl.addEventListener("click", handleRegisterClick);
+eventsListEl.addEventListener("click", handleRegisterClick);})();
