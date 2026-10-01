@@ -62,3 +62,26 @@ input, textarea, select {
   border-radius: 5px;
   font-size: 16px;
 }
+nav {
+  background-color: #1a252f;
+  padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;        /* allows items to drop to a new line instead of squishing or overlapping */
+  align-items: center;    /* vertically centers items when they wrap to multiple lines */
+  gap: 10px 20px;          /* slightly smaller vertical gap, same horizontal gap */
+}
+/* Style the links inside the nav bar */
+nav a {
+  color: white;
+  text-decoration: none; /* removes the default underline */
+  font-size: 16px;
+}
+
+/* Underline a nav link when hovered/tapped, for feedback */
+nav a:hover {
+  text-decoration: underline;
+}
+nav span {
+  color: #ccc;        /* a slightly dimmer white, to visually separate it from clickable links */
+  font-size: 15px;
+}

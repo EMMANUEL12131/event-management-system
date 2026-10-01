@@ -1,4 +1,3 @@
 ◇ injected env (7) from .env
 Server is running on http://localhost:3000
 MongoDB connected successfully
-Email sending failed: Invalid login: 535 Authentication failed
