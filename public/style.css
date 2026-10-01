@@ -1,0 +1,64 @@
+/* Reset default browser spacing so we have full control over layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* makes width/height calculations more predictable */
+}
+
+/* Base styling for the whole page */
+body {
+  font-family: Arial, sans-serif; /* a clean, widely-available font */
+  background-color: #f4f4f4;      /* light grey background */
+  color: #333;                     /* dark grey text, easier on the eyes than pure black */
+}
+
+/* Style the header bar at the top */
+header {
+  background-color: #2c3e50;   /* dark navy blue */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the main content area */
+main {
+  max-width: 800px;    /* keeps text from stretching too wide on big screens */
+  margin: 20px auto;   /* centers the content horizontally */
+  padding: 0 20px;
+}
+
+/* A reusable style for event cards (we'll use this soon) */
+.event-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* subtle shadow for depth */
+}
+
+/* Style all buttons consistently across the site */
+button {
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;      /* shows a hand icon on hover, signaling it's clickable */
+  font-size: 16px;
+}
+
+/* Slightly darken buttons when hovered/tapped, for visual feedback */
+button:hover {
+  background-color: #1a252f;
+}
+
+/* Style text inputs and textareas consistently */
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}

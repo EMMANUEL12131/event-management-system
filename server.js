@@ -22,7 +22,9 @@ connectDB();
 
 // Middleware to parse incoming JSON
 app.use(express.json());
-
+// Serve any file inside the "public" folder directly to browsers
+// e.g. a file at public/index.html becomes accessible at http://localhost:3000/index.html
+app.use(express.static("public"));
 // Mount our routes
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
