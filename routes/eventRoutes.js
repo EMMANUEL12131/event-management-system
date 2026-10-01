@@ -1,12 +1,12 @@
-// Import Express so we can use its Router feature
 const express = require("express");
 const router = express.Router();
 
-// Import our event controller functions
-const { createEvent, getEvents, registerForEvent } = require("../controllers/eventController");
-
-// Import our "protect" middleware
+const { createEvent, getEvents, registerForEvent, getMyEvents } = require("../controllers/eventController");
 const { protect } = require("../middleware/authMiddleware");
+
+// GET /api/events/my-events → MUST come before any route with a ":id" pattern,
+// otherwise Express would mistake "my-events" for an actual event ID
+router.get("/my-events", protect, getMyEvents);
 
 // GET /api/events → fetch all events (public)
 router.get("/", getEvents);
@@ -15,9 +15,6 @@ router.get("/", getEvents);
 router.post("/", protect, createEvent);
 
 // POST /api/events/:id/register → register for a specific event (protected)
-// ":id" is a "route parameter" — a placeholder that matches any event ID
-// e.g. POST /api/events/6abd6c9b7dab202972c54bac/register
 router.post("/:id/register", protect, registerForEvent);
 
-// Make this router available to server.js
 module.exports = router;

@@ -47,6 +47,19 @@ const getEvents = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+// This function fetches only the events created by the logged-in user
+const getMyEvents = async (req, res) => {
+  try {
+    // Find events where the "organizer" field matches this user's id
+    const events = await Event.find({ organizer: req.user.id });
+
+    res.status(200).json(events);
+
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
 // This function handles a logged-in user registering for a specific event
 const registerForEvent = async (req, res) => {
   try {
@@ -101,4 +114,4 @@ const registerForEvent = async (req, res) => {
 
 
 // Make both functions available to our routes file
-module.exports = { createEvent, getEvents, registerForEvent };
+module.exports = { createEvent, getEvents, registerForEvent, getMyEvents };
