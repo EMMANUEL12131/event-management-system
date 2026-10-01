@@ -13,6 +13,7 @@ if (token) {
     <a href="/index.html">Home</a>
     <a href="/events.html">Events</a>
     <a href="/create-event.html">Create Event</a>
+    <a href="/dashboard.html">Dashboard</a>
     <span>Welcome, ${userName}</span>
     <a href="#" id="logoutLink">Logout</a>
   `;

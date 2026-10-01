@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { createEvent, getEvents, registerForEvent, getMyEvents } = require("../controllers/eventController");
+const { createEvent, getEvents, registerForEvent, getMyEvents, getMyRegistrations } = require("../controllers/eventController");
 const { protect } = require("../middleware/authMiddleware");
 
-// GET /api/events/my-events → MUST come before any route with a ":id" pattern,
-// otherwise Express would mistake "my-events" for an actual event ID
+// Specific routes first, before the wildcard ":id" route
 router.get("/my-events", protect, getMyEvents);
+router.get("/my-registrations", protect, getMyRegistrations);
 
 // GET /api/events → fetch all events (public)
 router.get("/", getEvents);
