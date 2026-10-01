@@ -1,33 +1,38 @@
-<!-- This tells the browser this is a modern HTML5 document -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Ensures special characters display correctly -->
   <meta charset="UTF-8">
-  <!-- Makes the page resize properly on phone screens -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- The title shown in the browser tab -->
   <title>Event Management System</title>
-  <!-- Links to our CSS file, which we'll create next -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav>
-  <a href="/index.html">Home</a>
-  <a href="/events.html">Events</a>
-  <a href="/login.html">Login</a>
-  <a href="/register.html">Register</a>
-</nav>
-  <!-- A simple header for the page -->
+
+  <nav>
+    <a href="/index.html">Home</a>
+    <a href="/events.html">Events</a>
+    <a href="/login.html">Login</a>
+    <a href="/register.html">Register</a>
+  </nav>
+
+  <!-- The "hero" section — the first big impression visitors get -->
   <header>
-    
-    <h1>Event Management System</h1>
+    <h1>Find and Host Events That Matter</h1>
+    <p>Browse upcoming events, register in seconds, and manage your own events as an organizer.</p>
   </header>
 
-  <!-- Main content area -->
   <main>
-    <p>Welcome! This is the homepage of our event platform.</p>
+    <!-- A short preview section — just a few events, not the full list -->
+    <section>
+      <h2>Upcoming Events</h2>
+      <!-- Our JavaScript will fill this with a handful of real event cards -->
+      <div id="eventPreview"></div>
+      <!-- A link to the full events page, for anyone who wants to see everything -->
+      <p><a href="/events.html">See all events →</a></p>
+    </section>
   </main>
-<script src="nav.js"></script>
+
+  <script src="nav.js"></script>
+  <script src="home.js"></script>
 </body>
 </html>
